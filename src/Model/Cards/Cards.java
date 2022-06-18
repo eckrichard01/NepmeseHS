@@ -7,13 +7,17 @@ public abstract class Cards {
     private int magicShield;
     private int attack;
     private int magicDamage;
+    private String name;
+    private String detail;
     private Caracter caracter;
 
-    public Cards(int h, int ms, int a, int md){
+    public Cards(int h, int ms, int a, int md, String n, String d){
         health = h;
         magicDamage = md;
         magicShield = ms;
         attack = a;
+        name = n;
+        detail = d;
     }
 
     public int getHealth(){
@@ -36,6 +40,10 @@ public abstract class Cards {
         return caracter;
     }
 
+    public void setCaracter(Caracter caracter) {
+        this.caracter = caracter;
+    }
+
     public void setAttack(int attack) {
         this.attack = attack;
     }
@@ -52,7 +60,21 @@ public abstract class Cards {
         this.magicShield = magicShield;
     }
 
-    public abstract void Attack();
+    public abstract void Attack(Cards card);
 
     public abstract void Attacked();
+
+    public abstract void Die();
+
+    public abstract void EndTurn();
+
+    public abstract void PlayCard();
+
+    public String getName(){
+        return name;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
 }

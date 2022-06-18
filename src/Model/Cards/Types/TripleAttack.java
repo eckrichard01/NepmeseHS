@@ -5,19 +5,15 @@ import Model.Cards.Cards;
 public class TripleAttack extends Cards {
     private boolean canAttack;
     private int attacked;
-    private String detail;
 
-    public TripleAttack(int h, int ms, int a, int md) {
-        super(h, ms, a, md);
-        detail = "3x tud támadni egy körben";
+    public TripleAttack(int h, int ms, int a, int md, String n) {
+        super(h, ms, a, md, n, "3x tud támadni egy körben");
+        attacked = 3;
+        canAttack = true;
     }
 
     public boolean isCanAttack() {
         return canAttack;
-    }
-
-    public String getDetail() {
-        return detail;
     }
 
     public int getAttacked() {
@@ -25,12 +21,46 @@ public class TripleAttack extends Cards {
     }
 
     @Override
-    public void Attack() {
+    public void Attack(Cards card) {
+        if(canAttack){
+            card.setHealth(card.getHealth() - this.getAttack());
+            setHealth(getHealth() - card.getAttack());
+            attacked--;
 
+            if(attacked == 0){
+                canAttack = false;
+            }
+
+            if(card.getHealth() <= 0){
+                card.Die();
+            }
+
+            if(getHealth() <= 0){
+                Die();
+            }
+        }
     }
 
     @Override
     public void Attacked() {
 
+    }
+
+    @Override
+    public void Die() {
+        getCaracter().CardDie(this);
+    }
+
+    @Override
+    public void EndTurn() {
+        canAttack = true;
+        attacked = 3;
+        getCaracter().setMoneyWithOne();
+    }
+
+    @Override
+    public void PlayCard() {
+        getCaracter().getPickedup().remove(this);
+        getCaracter().getPlayed().add(this);
     }
 }
