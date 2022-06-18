@@ -6,8 +6,8 @@ public class TripleAttack extends Cards {
     private boolean canAttack;
     private int attacked;
 
-    public TripleAttack(int h, int ms, int a, int md, String n) {
-        super(h, ms, a, md, n, "3x tud támadni egy körben");
+    public TripleAttack(int h, int ms, int a, int md, String n, int c) {
+        super(h, ms, a, md, n, "3x tud támadni egy körben", c);
         attacked = 3;
         canAttack = true;
     }
@@ -60,7 +60,11 @@ public class TripleAttack extends Cards {
 
     @Override
     public void PlayCard() {
-        getCaracter().getPickedup().remove(this);
-        getCaracter().getPlayed().add(this);
+        if(getCost() <= getCaracter().getMoney()){
+            getCaracter().setMoney(getCaracter().getMoney() - getCost());
+            getCaracter().getPickedup().remove(this);
+            getCaracter().getPlayed().add(this);
+        }
+
     }
 }

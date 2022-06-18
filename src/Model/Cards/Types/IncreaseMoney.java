@@ -5,8 +5,8 @@ import Model.Cards.Cards;
 public class IncreaseMoney extends Cards {
     private int amount;
 
-    public IncreaseMoney(int h, int ms, int a, int md, int amount, String n) {
-        super(h, ms, a, md, n, "A pénzed " + amount + "-val/vel nő");
+    public IncreaseMoney(int h, int ms, int a, int md, int amount, String n, int c) {
+        super(h, ms, a, md, n, "A pénzed " + amount + "-val/vel nő", c);
         this.amount = amount;
     }
 
@@ -45,8 +45,11 @@ public class IncreaseMoney extends Cards {
 
     @Override
     public void PlayCard() {
-        Increase();
-        getCaracter().getPickedup().remove(this);
-        getCaracter().getPlayed().add(this);
+        if(getCost() <= getCaracter().getMoney()){
+            getCaracter().setMoney(getCaracter().getMoney() - getCost());
+            Increase();
+            getCaracter().getPickedup().remove(this);
+            getCaracter().getPlayed().add(this);
+        }
     }
 }

@@ -51,6 +51,10 @@ public class Caracter {
         return money;
     }
 
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
     public void DrawCard(){
         int random = new Random().nextInt(drawable.size());
         Cards card = drawable.get(random);

@@ -7,17 +7,19 @@ public abstract class Cards {
     private int magicShield;
     private int attack;
     private int magicDamage;
+    private int cost;
     private String name;
     private String detail;
     private Caracter caracter;
 
-    public Cards(int h, int ms, int a, int md, String n, String d){
+    public Cards(int h, int ms, int a, int md, String n, String d, int c){
         health = h;
         magicDamage = md;
         magicShield = ms;
         attack = a;
         name = n;
         detail = d;
+        cost = c;
     }
 
     public int getHealth(){
@@ -58,6 +60,14 @@ public abstract class Cards {
 
     public void setMagicShield(int magicShield) {
         this.magicShield = magicShield;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 
     public abstract void Attack(Cards card);

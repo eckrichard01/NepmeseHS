@@ -59,24 +59,24 @@ public class Game {
          */
         caracter.DrawCard();
         caracter.getPickedup().get(0).PlayCard();
-        caracter.EndTurn();
         Print();
+        caracter.EndTurn();
         /**
          * Turn 2
          */
         caracter2.DrawCard();
         caracter2.getPickedup().get(0).PlayCard();
         caracter2.getPlayed().get(0).Attack(caracter.getPlayed().get(0));
-        caracter2.EndTurn();
         Print();
+        caracter2.EndTurn();
         /**
          * Turn 3
          */
         caracter.getPlayed().get(0).Attack(caracter2.getPlayed().get(0));
         caracter.getPlayed().get(0).Attack(caracter2.getPlayed().get(0));
         caracter.getPlayed().get(0).Attack(caracter2.getPlayed().get(0));
-        caracter.EndTurn();
         Print();
+        caracter.EndTurn();
     }
 
     public static void main(String args[]){
